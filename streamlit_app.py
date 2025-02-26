@@ -6,14 +6,20 @@ import random
 # Ρύθμιση του φακέλου με τις εικόνες
 folder_path = "C:/Users/papat/OneDrive/Documents/storytelling/treasure hunter/treasure-hunter/"
 
+
+	
 def get_random_image(position):
-    """Επιστρέφει τυχαία εικόνα για μια συγκεκριμένη θέση."""
+    folder_path = "images"  # Βεβαιώσου ότι είναι ο σωστός φάκελος
+    if not os.path.exists(folder_path):
+        return None  # Αν δεν υπάρχει ο φάκελος, γύρνα None
+
     valid_filenames = [f"{(position - 1) * 5 + j}.png" for j in range(1, 6)]
     images = [img for img in valid_filenames if img in os.listdir(folder_path)]
-    
+
     if images:
         return os.path.join(folder_path, random.choice(images))
     return None
+
 
 # --- Streamlit UI ---
 st.set_page_config(page_title="Πες μια Ιστορία - Web App", layout="wide")
